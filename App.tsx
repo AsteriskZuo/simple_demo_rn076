@@ -21,7 +21,7 @@ import {
   ChatOptions,
   ChatMessageChatType,
   ChatMessage,
-} from 'react-native-chat-sdk';
+} from 'react-native-agora-chat';
 
 // Defines the App object.
 const App = () => {
