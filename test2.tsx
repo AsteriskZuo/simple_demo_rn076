@@ -149,11 +149,11 @@ const App = () => {
     console.log('isStop:', isStop);
   };
   return (
-    <React.StrictMode>
+    // <React.StrictMode>
       <SafeAreaView style={styles.container} onTouchEnd={onTouchEnd}>
-        <LoadingIcon2 isStop={isStop} />
+        {isStop ? <LoadingIcon2 isStop={false} /> : null}
       </SafeAreaView>
-    </React.StrictMode>
+    // </React.StrictMode>
   );
 };
 
@@ -162,6 +162,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    // backgroundColor: 'blue',
   },
   fadingContainer: {
     padding: 20,
