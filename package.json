@@ -12,7 +12,10 @@
   "dependencies": {
     "react": "18.3.1",
     "react-native": "0.76.9",
-    "react-native-chat-sdk": "1.8.0"
+    "react-native-chat-sdk": "1.8.0",
+    "react-native-cn-richtext-editor": "^1.0.43",
+    "react-native-pell-rich-editor": "^1.10.0",
+    "react-native-render-html": "^6.3.4"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
