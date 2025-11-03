@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import * as React from 'react';
-import {Button, Text, View} from 'react-native';
+import {Button, Text, View, AppState} from 'react-native';
 import {
   NavigationContainer,
   RouteProp,
@@ -20,14 +20,30 @@ const Stack = createNativeStackNavigator();
 export function MainScreen() {
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
   const [isStop, setIsStop] = React.useState(false);
-  // React.useEffect(() => {
-  //   console.log('MainScreen:useEffect');
-  //   // setIsStop(true);
-  //   return () => {
-  //     console.log('MainScreen:useEffect:return');
-  //     setIsStop(false);
-  //   };
-  // }, []);
+  React.useEffect(() => {
+    const handleAppStateChange = (nextAppState: string) => {
+      console.log('App state:', nextAppState);
+
+      if (nextAppState === 'background') {
+        // 类似 onStop：应用完全进入后台
+        setIsStop(true);
+      } else if (nextAppState === 'inactive') {
+        // 类似 onPause：应用失去焦点（如来电、弹窗）
+        setIsStop(false);
+      } else if (nextAppState === 'active') {
+        // 类似 onResume：应用回到前台
+        setIsStop(false);
+      }
+    };
+
+    const subscription = AppState.addEventListener(
+      'change',
+      handleAppStateChange,
+    );
+    return () => {
+      subscription.remove();
+    };
+  }, []);
 
   useFocusEffect(
     React.useCallback(() => {
